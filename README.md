@@ -20,8 +20,8 @@ Sendo mantidas em arquivo .json como "expressão:resultado".
 O microsserviço "calculation" realiza a conta.\
 Ele retorna apenas um texto com o valor do resultado.
 
-O microsserviço "response" envia o resultado para o "server", já formatado.\
-Pode ser formatado como: "A expressão {2 + 4} equivale a {6}."
+O microsserviço "response" envia o resultado para o "server".\
+A resposta deve ser realizada via json, contendo a expressão como chave e o resultado como valor.
 
 ## Implementação
 
