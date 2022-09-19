@@ -1,4 +1,4 @@
-### microservices-minicourse
+# Minicurso sobre Microsserviços
 
 ## Configuração
 
@@ -28,17 +28,17 @@ Pode ser formatado como: "A expressão {2 + 4} equivale a {6}."
 Não usaremos um orquestrador, todos os microsserviços saberão exatamente o endereço do outro.
 Não há necessidade para a existência de um banco de dados.
 
-# Interface "server"
+### Interface "server"
 
 O "server" repassará para o microsserviço "response" a expressão que deseja ser calculada.
 Esta expressão deve estar previamente simplificada e validada, o que pode ser feita pelo lado do cliente.
 
-# Microsserviço "response"
+### Microsserviço "response"
 
 Após o recebimento, este microsserviço encaminhará a requisição para o microsserviço "store".
 Ao receber o resultado da expressão, ele responderá o "server" via json, contendo "{expressao: resultado}".
 
-# Microsserviço "store"
+### Microsserviço "store"
 
 Checando um arquivo .json interno, ele irá ver se já existe o resultado da expressão.
 Caso existir, ele o retornará para o microsserviço "response".
@@ -46,7 +46,7 @@ Caso existir, ele o retornará para o microsserviço "response".
 Senão, ele enviará a expressão para o microsserviço "calculation", e aguardará o resultado.
 Após a resposta, ele irá retornar e atualizar o seu arquivo .json.
 
-# Microsserviço "calculation"
+### Microsserviço "calculation"
 
 Após o recebimento da expressão, este microsserviço a calculará.
 Calculando-a, ele retornará para o microsserviço "store" a resposta, como um simples texto.
