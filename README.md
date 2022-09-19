@@ -15,7 +15,7 @@ A aplicação "server" servirá de interface para o cliente.\
 Ele conversa diretamente com o microsserviço "store".
 
 O microsserviço "store" guarda as informações de contas já realizadas.\
-Sendo mantidas em arquivo .json como "expressão:resultado".
+Sendo mantidas em arquivo .json como "expressão: resultado".
 
 O microsserviço "calculation" realiza a conta.\
 Ele retorna apenas um texto com o valor do resultado.
@@ -44,7 +44,7 @@ Checando um arquivo .json interno, ele irá ver se já existe o resultado da exp
 Caso existir, ele o retornará para o microsserviço "response".
 
 Senão, ele enviará a expressão para o microsserviço "calculation", e aguardará o resultado.\
-Após a resposta, ele irá retornar e atualizar o seu arquivo .json.
+Após a resposta, ele irá retornar o cálculo da expressão e atualizar o seu arquivo .json.
 
 ### Microsserviço "calculation"
 
