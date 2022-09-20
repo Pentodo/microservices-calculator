@@ -47,7 +47,7 @@ table {
 
 tr > * {
 	border: 1px solid var(--comment);
-	width: 2em;
+	width: 3.5em;
 	height: 1.75em;
 	border-radius: 4px;
 	text-align: center;
