@@ -12,7 +12,7 @@ Deve ser localizado na pasta "public". Este microsserviço é o único que deve 
 ## Ideia
 
 A aplicação "server" servirá de interface para o cliente.\
-Ele conversa diretamente com o microsserviço "store".
+Ela conversa diretamente com o microsserviço "store".
 
 O microsserviço "store" guarda as informações de contas já realizadas.\
 Sendo mantidas em arquivo .json como "expressão: resultado".
