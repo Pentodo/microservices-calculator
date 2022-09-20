@@ -4,7 +4,7 @@ body {
 	justify-content: space-evenly;
 	align-items: center;
 	height: 100vh;
-	font-size: 20px;
+	font-size: 24px;
 }
 
 h1,
@@ -21,35 +21,50 @@ p {
 }
 
 .display {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
 	background-color: var(--grey);
 	border: 2px solid var(--comment);
 	border-radius: 4px;
 	margin: 8px 0px 0px 8px;
-	width: calc(100% - 1em);
-	height: 3em;
-	text-align: right;
+	width: calc(100% - 20px);
+	height: 1.5em;
+	font-size: 2em;
+}
+
+.display:hover {
+	filter: brightness(125%);
 }
 
 .number {
-	display: block;
 	color: var(--green);
-	padding: 0.2em 0.4em;
-	font-size: 1.75em;
 	font-weight: 500;
+	padding-right: 0.375em;
 }
 
 table {
 	border-spacing: 8px;
-	font-size: 1.375em;
+	font-size: 1.5em;
+	user-select: none;
 }
 
 tr > * {
 	border: 1px solid var(--comment);
-	width: 3em;
-	height: 2em;
+	width: 2em;
+	height: 1.75em;
 	border-radius: 4px;
 	text-align: center;
 	font-weight: normal;
+}
+
+tr > *:hover {
+	filter: brightness(125%);
+	cursor: pointer;
+}
+
+tr > *:active {
+	filter: contrast(125%);
 }
 
 tr > th,
