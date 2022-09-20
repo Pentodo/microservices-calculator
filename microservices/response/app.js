@@ -1,13 +1,12 @@
 require('dotenv').config();
+const serviceRes = require('./src/routes/index')
 
 const express = require('express');
 
 const app = express();
 const port = process.env.PORT || 3001;
 
-app.get('/', (req, res) => {
-	res.send('Hello World!');
-});
+app.get('/', serviceRes);
 
 app.listen(port, () => {
 	console.log(`App running on http://localhost:${port}`);
