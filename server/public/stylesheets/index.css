@@ -1,0 +1,65 @@
+body {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	height: 100vh;
+	font-size: 20px;
+}
+
+h1,
+p {
+	margin: 0;
+}
+
+p {
+	margin-top: 8px;
+}
+
+.info {
+	text-align: center;
+}
+
+.display {
+	background-color: var(--grey);
+	border: 2px solid var(--comment);
+	border-radius: 4px;
+	margin: 8px 0px 0px 8px;
+	width: calc(100% - 1em);
+	height: 3em;
+	text-align: right;
+}
+
+.number {
+	display: block;
+	color: var(--green);
+	padding: 0.2em 0.4em;
+	font-size: 1.75em;
+	font-weight: 500;
+}
+
+table {
+	border-spacing: 8px;
+	font-size: 1.375em;
+}
+
+tr > * {
+	border: 1px solid var(--comment);
+	width: 3em;
+	height: 2em;
+	border-radius: 4px;
+	text-align: center;
+	font-weight: normal;
+}
+
+tr > th,
+tr > td:last-child {
+	background-color: var(--comment);
+	font-weight: 500;
+}
+
+.send {
+	background-color: var(--brown);
+	color: var(--pink);
+	font-weight: 500;
+}
