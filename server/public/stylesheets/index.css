@@ -33,10 +33,6 @@ p {
 	font-size: 2em;
 }
 
-.display:hover {
-	filter: brightness(125%);
-}
-
 .number {
 	color: var(--green);
 	font-weight: 500;

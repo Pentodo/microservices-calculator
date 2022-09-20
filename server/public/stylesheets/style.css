@@ -16,6 +16,11 @@
 	--grey: #383a59;
 }
 
+::selection {
+	background-color: var(--pink);
+	color: var(--background);
+}
+
 body {
 	margin: 0;
 	font-family: 'Quicksand', sans-serif;
