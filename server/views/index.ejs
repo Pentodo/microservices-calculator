@@ -1,11 +1,52 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+	<head>
+		<title><%= title %></title>
+		<link rel="stylesheet" href="/stylesheets/style.css" />
+		<link rel="stylesheet" href="/stylesheets/index.css" />
+	</head>
+
+	<body>
+		<div class="info">
+			<h1><%= title %></h1>
+			<p>Bem-vindo à nossa calculadora implementada via microsserviços!</p>
+		</div>
+		<div class="calculator">
+			<div class="display">
+				<span class="number">(6 × 2) ÷ 4</span>
+			</div>
+			<table>
+				<tr>
+					<th>(</th>
+					<th>)</th>
+					<th>%</th>
+					<th>C</th>
+				</tr>
+				<tr>
+					<td>7</td>
+					<td>8</td>
+					<td>9</td>
+					<td>÷</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>5</td>
+					<td>6</td>
+					<td>×</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>2</td>
+					<td>3</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>0</td>
+					<td>.</td>
+					<td class="send">=</td>
+					<td>+</td>
+				</tr>
+			</table>
+		</div>
+	</body>
 </html>
