@@ -6,7 +6,8 @@ const router = express.Router();
 router.get('/:count', async function (req, res) {
 	const {count} = req.params
 	const response = await serviceStore(count)
-	res.send(response);
+	console.log(response);
+	res.send({count_result: response});
 });
 
 module.exports = router;
