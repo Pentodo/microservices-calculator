@@ -33,7 +33,7 @@ p {
 	font-size: 2em;
 }
 
-.number {
+.expression {
 	color: var(--green);
 	font-weight: 500;
 	padding-right: 0.375em;
