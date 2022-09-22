@@ -45,7 +45,8 @@ table {
 	user-select: none;
 }
 
-tr > * {
+th,
+td {
 	border: 1px solid var(--comment);
 	width: 3.5em;
 	height: 1.75em;
@@ -54,17 +55,19 @@ tr > * {
 	font-weight: normal;
 }
 
-tr > *:hover {
+th:hover,
+td:hover {
 	filter: brightness(125%);
 	cursor: pointer;
 }
 
-tr > *:active {
+th:active,
+td:active {
 	filter: contrast(125%);
 }
 
-tr > th,
-tr > td:last-child {
+th,
+td:last-child {
 	background-color: var(--comment);
 	font-weight: 500;
 }
