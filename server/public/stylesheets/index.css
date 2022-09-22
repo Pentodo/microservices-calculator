@@ -29,14 +29,17 @@ p {
 	border-radius: 4px;
 	margin: 8px 0px 0px 8px;
 	width: calc(100% - 20px);
-	height: 1.5em;
+	height: fit-content;
 	font-size: 2em;
+	text-align: right;
+	overflow-wrap: break-word;
 }
 
 .expression {
 	color: var(--green);
 	font-weight: 500;
-	padding-right: 0.375em;
+	padding-right: 0.25em;
+	width: 11em;
 }
 
 table {
