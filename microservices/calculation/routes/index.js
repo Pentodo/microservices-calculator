@@ -11,7 +11,6 @@ router.get('/:count', async function (req, res) {
         const result = await serviceCalculation(expression.count)
         res.send({ value: result }).status(200)
     } catch (error) {
-        console.log(error);
         res.send('Server Error').status(500)
     }
 });

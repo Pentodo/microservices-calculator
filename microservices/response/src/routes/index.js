@@ -9,8 +9,7 @@ router.get('/:count', async function (req, res) {
             res.send('Invalid parameter!').status(400)
         }
         const { data } = await serviceResponse(expression)
-        console.log(data);
-        res.send({ result: data.count_result }).status(200)
+        res.send(data).status(200)
     } catch (error) {
         console.log(error);
         res.send('Server Error').status(500)
