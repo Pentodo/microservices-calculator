@@ -1,3 +1,1 @@
-module.exports = async (expression) => {
-    return  eval(expression)
-}
+module.exports = async (expression) => new Function(`return ${expression}`)();
