@@ -17,7 +17,7 @@ A aplicação "server" usa a variável RESPONSE_MICROSERVICE, que define o ip e 
 Esse arquivo deve ser localizado no diretório raiz de cada aplicação.
 
 Além disso, o microsserviço "store" também utiliza um "file.json", para a execução de modificações em arquivo.\
-Deve ser localizado na pasta "public". Este microsserviço é o único que deve ter algo do tipo.
+Deve ser localizado na pasta "public". Este microsserviço é o único que deve ter algo do tipo.\
 Se a pasta ou arquivo não forem criados previamente, isto acontecerá na execução.
 
 ## Ideia
