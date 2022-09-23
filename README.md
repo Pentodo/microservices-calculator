@@ -12,8 +12,8 @@ Para a realização deste projeto, utilizamos os protocolos síncronos HTTP e RE
 
 ## Configuração
 
-Cada microsserviço tem um arquivo ".env", que define a variável PORT.\
-A aplicação "server" usa a variável RESPONSE_MICROSERVICE, que define o ip e porta do microsserviço.\
+Cada microsserviço tem um arquivo ".env", que define a variável de ambiente PORT.\
+A aplicação "server" usa a variável RESPONSE_MICROSERVICE, que define o ip e porta deste microsserviço.\
 Esse arquivo deve ser localizado no diretório raiz de cada aplicação.
 
 Além disso, o microsserviço "store" também utiliza um "file.json", para a execução de modificações em arquivo.\
