@@ -1,4 +1,4 @@
-# Minicurso sobre Microsserviços
+# Calculadora via Microsserviços
 
 Uma aplicação desenvolvida na disciplina de COM242.1 - SISTEMAS DISTRIBUÍDOS da UNIFEI.\
 O objetivo a ser realizado era:
