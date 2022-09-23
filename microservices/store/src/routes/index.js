@@ -4,9 +4,14 @@ const serviceStore = require('../service/index')
 const router = express.Router();
 
 router.get('/:count', async function (req, res) {
-	const {count} = req.params
-	const response = await serviceStore(count)
-	res.send(response);
+	try {
+		const { count } = req.params
+		const response = await serviceStore(count)
+		res.send(response);
+	} catch (error) {
+		res.status(500).send('Server Error')
+	}
+
 });
 
 module.exports = router;

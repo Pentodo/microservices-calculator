@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const serviceResponse = require('../service')
+const serviceCalculation = require('../service')
 
 router.get('/:count', async function (req, res) {
 	try {
@@ -8,10 +8,9 @@ router.get('/:count', async function (req, res) {
         if(!expression.count){
             res.send('Invalid parameter!').status(400)
         }
-        const { data } = await serviceResponse(expression)
-        res.send(data).status(200)
+        const result = await serviceCalculation(expression.count)
+        res.send({ value: result }).status(200)
     } catch (error) {
-        console.log(error);
         res.send('Server Error').status(500)
     }
 });
