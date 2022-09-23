@@ -2,6 +2,9 @@ require('dotenv').config();
 
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
+
+fs.mkdirSync(path.join(__dirname, 'public'), { recursive: true });
 
 const indexRouter = require('./src/routes/index');
 
