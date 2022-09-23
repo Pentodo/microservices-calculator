@@ -18,7 +18,7 @@ router.post('/', function (req, res, next) {
 		.catch((error) =>
 			res
 				.status(error.response?.status || 500)
-				.send(JSON.stringify(error.response?.data || 'Erro no servidor!'))
+				.send(JSON.stringify(error.response?.data || 'Erro no microsserviço response!'))
 		);
 });
 

@@ -27,7 +27,7 @@ calculator.addEventListener('click', (e) => {
 						expression.innerHTML = await response.json();
 					})
 					.catch((error) => {
-						console.log(error);
+						expression.innerHTML = 'Erro no servidor!';
 					});
 			} catch {
 				expression.innerHTML = 'Entrada inválida!';
