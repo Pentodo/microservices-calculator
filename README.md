@@ -1,27 +1,38 @@
 # Minicurso sobre Microsserviços
 
+Uma aplicação desenvolvida na disciplina de COM242.1 - SISTEMAS DISTRIBUÍDOS da UNIFEI.\
+O objetivo a ser realizado era:
+
+    1. Resposta a uma mensagem de texto;
+    2. Alterações em um arquivo texto;
+    3. Cálculo de uma função.
+
+Sendo assim, desenvolvemos uma calculadora, (totalmente didática), na arquitetura de microsserviços.\
+Para a realização deste projeto, utilizamos os protocolos síncronos HTTP e REST.
+
 ## Configuração
 
-Cada microsserviço tem um arquivo ".env", que, inicialmente, define a variável PORT.\
-Entretanto, a ideia é disponibilizar suporte para futuras implementações de informações sensíveis.\
-Deve ser localizado no diretório raiz de cada microsserviço.
+Cada microsserviço tem um arquivo ".env", que define a variável PORT.\
+A aplicação "server" usa a variável RESPONSE_MICROSERVICE, que define o ip e porta do microsserviço.\
+Esse arquivo deve ser localizado no diretório raiz de cada aplicação.
 
 Além disso, o microsserviço "store" também utiliza um "file.json", para a execução de modificações em arquivo.\
 Deve ser localizado na pasta "public". Este microsserviço é o único que deve ter algo do tipo.
+Se a pasta ou arquivo não forem criados previamente, isto acontecerá na execução.
 
 ## Ideia
 
 A aplicação "server" servirá de interface para o cliente.\
-Ela conversa diretamente com o microsserviço "store".
-
-O microsserviço "store" guarda as informações de contas já realizadas.\
-Sendo mantidas em arquivo .json como "expressão: resultado".
-
-O microsserviço "calculation" realiza a conta.\
-Ele retorna apenas um texto com o valor do resultado.
+Ela conversa diretamente com o microsserviço "response".
 
 O microsserviço "response" envia o resultado para o "server".\
-A resposta deve ser realizada via json, contendo a expressão como chave e o resultado como valor.
+A resposta esperada é uma string.
+
+O microsserviço "store" guarda as informações de contas já realizadas.\
+Estas informações são mantidas em "public/file.json" como "expressão:resultado".
+
+O microsserviço "calculation" realiza a conta.\
+A resposta esperada é uma string, podendo ser a conta realizada ou uma mensagem de erro.
 
 ## Implementação
 
@@ -31,22 +42,25 @@ Não há necessidade para a existência de um banco de dados.
 ### Interface "server"
 
 O "server" repassará para o microsserviço "response" a expressão que deseja ser calculada.\
-Esta expressão deve estar previamente simplificada e validada, o que pode ser feita pelo lado do cliente.
+Não há necessidade de validação, caso esteja fora do padrão, os microsserviços saberão tratá-las.
 
 ### Microsserviço "response"
 
 Após o recebimento, este microsserviço encaminhará a requisição para o microsserviço "store".\
-Ao receber o resultado da expressão, ele responderá o "server" via json, contendo "{expressao: resultado}".
+Ao receber o resultado da expressão, ele responderá o "server" com uma string.\
+Esta string pode ser tanto o resultado como uma mensagem de erro. Ambas serão repassadas para o usuário.
 
 ### Microsserviço "store"
 
-Checando um arquivo .json interno, ele irá ver se já existe o resultado da expressão.\
-Caso existir, ele o retornará para o microsserviço "response".
+Checando o arquivo .json interno, ele irá ver se já existe o resultado da expressão.\
+Caso exista, ele o retornará para o microsserviço "response".
 
-Senão, ele enviará a expressão para o microsserviço "calculation", e aguardará o resultado.\
-Após a resposta, ele irá retornar o cálculo da expressão e atualizar o seu arquivo .json.
+Senão, ele enviará a expressão para o microsserviço "calculation" e aguardará o resultado.\
+Após o recebimento, ele irá repassar a resposta e atualizar o seu arquivo .json.
+A atualização só será realizada em caso de sucesso.
 
 ### Microsserviço "calculation"
 
 Após o recebimento da expressão, este microsserviço a calculará.\
-Calculando-a, ele retornará para o microsserviço "store" a resposta, como um simples texto.
+Calculando-a, ele a retornará para o microsserviço "store".\
+A resposta é uma string, dizendo se a entrada é inválida ou, em caso de sucesso, o resultado em questão.
