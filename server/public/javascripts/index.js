@@ -9,7 +9,7 @@ calculator.addEventListener('click', (e) => {
 		return;
 	}
 
-	if (expression.innerHTML === 'Entrada inválida!') {
+	if (/[^0-9÷×\-+e]/.test(expression.innerHTML)) {
 		expression.innerHTML = expression.innerHTML = '0';
 	}
 
