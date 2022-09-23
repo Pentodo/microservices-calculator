@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 
 app.use((req, res) => {
-	res.status(404).send('Not Found!');
+	res.status(404).send('Use /:expression para acessar a API de store!');
 });
 
 module.exports = app;

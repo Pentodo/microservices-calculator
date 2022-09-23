@@ -1,17 +1,40 @@
 const express = require('express');
-const serviceStore = require('../service/index')
+const fs = require('fs').promises;
+const path = require('path');
+const axios = require('axios').default;
 
 const router = express.Router();
 
-router.get('/:count', async function (req, res) {
-	try {
-		const { count } = req.params
-		const response = await serviceStore(count)
-		res.send(response);
-	} catch (error) {
-		res.status(500).send('Server Error')
-	}
+router.get('/', (req, res, next) => {
+	next();
+});
 
+router.get('/:expression(*)', function (req, res) {
+	const expression = req.params.expression;
+
+	fs.readFile(path.resolve('public', 'file.json'))
+		.then((data) => JSON.parse(data))
+		.catch((error) => ({}))
+		.then((expressions) => {
+			if (expressions[expression]) {
+				res.send(expressions[expression].toString());
+				return;
+			}
+
+			axios({
+				method: 'get',
+				url: `http://localhost:3003/${expression}`,
+			})
+				.then((response) => {
+					res.send(response.data.toString());
+
+					expressions[expression] = response.data;
+					fs.writeFile(path.resolve('public', 'file.json'), JSON.stringify(expressions));
+				})
+				.catch((error) =>
+					res.status(500).send(error.response?.data || 'Erro no microsserviço calculation!')
+				);
+		});
 });
 
 module.exports = router;
