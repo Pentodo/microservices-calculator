@@ -17,21 +17,17 @@ calculator.addEventListener('click', (e) => {
 		if (className === 'send' && expression.innerHTML !== '0') {
 			const formattedExpression = expression.innerHTML.replaceAll(/÷/g, '/').replaceAll(/×/g, '*');
 
-			try {
-				fetch('/', {
-					method: 'post',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({ expression: formattedExpression }),
+			fetch('/', {
+				method: 'post',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ expression: formattedExpression }),
+			})
+				.then(async (response) => {
+					expression.innerHTML = await response.json();
 				})
-					.then(async (response) => {
-						expression.innerHTML = await response.json();
-					})
-					.catch((error) => {
-						expression.innerHTML = 'Erro no servidor!';
-					});
-			} catch {
-				expression.innerHTML = 'Entrada inválida!';
-			}
+				.catch((error) => {
+					expression.innerHTML = 'Erro no servidor!';
+				});
 		} else if (className === 'delete') {
 			expression.innerHTML = expression.innerHTML.length > 1 ? expression.innerHTML.slice(0, -1) : '0';
 		} else if (className === 'clear') {
