@@ -5,10 +5,6 @@ const axios = require('axios').default;
 
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
-	next();
-});
-
 router.get('/:expression(*)', function (req, res) {
 	const expression = req.params.expression;
 
@@ -17,7 +13,7 @@ router.get('/:expression(*)', function (req, res) {
 		.catch((error) => ({}))
 		.then((expressions) => {
 			if (expressions[expression]) {
-				res.send(expressions[expression].toString());
+				res.send(JSON.stringify(expressions[expression]));
 				return;
 			}
 
@@ -26,13 +22,15 @@ router.get('/:expression(*)', function (req, res) {
 				url: `http://localhost:3003/${expression}`,
 			})
 				.then((response) => {
-					res.send(response.data.toString());
+					res.send(JSON.stringify(response.data));
 
 					expressions[expression] = response.data;
 					fs.writeFile(path.resolve('public', 'file.json'), JSON.stringify(expressions));
 				})
 				.catch((error) =>
-					res.status(500).send(error.response?.data || 'Erro no microsserviço calculation!')
+					res
+						.status(error.response?.status || 500)
+						.send(JSON.stringify(error.response?.data || 'Erro no microsserviço calculation!'))
 				);
 		});
 });

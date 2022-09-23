@@ -12,7 +12,8 @@ app.listen(port, () => {
 	console.log(`App running on http://localhost:${port}`);
 });
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 app.use('/', indexRouter);
 
