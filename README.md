@@ -56,7 +56,8 @@ Dito isso, todas as saídas dos outros microsserviços devem seguir o mesmo padr
 
 ```mermaid
 flowchart LR;
-	A[Client]---->B[Server];
+	A[Client]--->B[Server];
+	B-->A;
 	B-->C((Response));
 	C-->D((Store));
 	C-->B;
