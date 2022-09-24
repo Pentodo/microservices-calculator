@@ -38,19 +38,21 @@ Se a pasta ou arquivo não forem criados previamente, isto acontecerá na execu�
 
 ## Ideia
 
-A aplicação "server" servirá de interface para o cliente.\
-Ela conversa diretamente com o microsserviço "response".
+A aplicação `server` servirá de interface para o cliente.\
+Ela conversa diretamente com o `microservice response`.
 
-O microsserviço "response" envia o resultado para o "server".\
-A resposta esperada é uma string.
+O `microservice response` requisita ao `microservice store` a resolução.\
+Ao recebê-la, esta é respondida ao `server`.
 
-O microsserviço "store" guarda as informações de contas já realizadas.\
-Estas informações são mantidas em "public/file.json" como "expressão:resultado".
+O `microservice store` guarda as informações de contas já realizadas.\
+Caso tenha a resolução em arquivo, é imediatamente respondida ao `microservice response`.\
+Senão, a expressão é repassada ao `microservice calculation`.
 
-O microsserviço "calculation" realiza a conta.\
-A resposta esperada é uma string, podendo ser a conta realizada ou uma mensagem de erro.
+O `microservice calculation` realiza a conta.\
+A resposta é uma string, podendo ser o resultado da expressão ou uma mensagem de erro.\
+Dito isso, todas as saídas dos outros microsserviços devem seguir o mesmo padrão.
 
-### Ilustrando o processo descrito acima:
+### Diagrama do processo descrito acima:
 
 ```mermaid
 flowchart LR;
@@ -59,7 +61,7 @@ flowchart LR;
 	C-->D((Store));
 	C-->B;
 	subgraph Microservices
-	D-->E((Calculator));
+	D-->E((Calculation));
 	D-->C;
 	E-->D;
 	end
