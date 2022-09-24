@@ -24,9 +24,13 @@ O mesmo que o anterior, mas, em casos de modificações, automaticamente reinici
 
 ## Configuração
 
+### `.env`
+
 Cada microsserviço tem um arquivo ".env", que define a variável de ambiente PORT.\
 A aplicação "server" usa a variável RESPONSE_MICROSERVICE, que define o ip e porta deste microsserviço.\
 Esse arquivo deve ser localizado no diretório raiz de cada aplicação.
+
+### `file.json`
 
 Além disso, o microsserviço "store" também utiliza um "file.json", para a execução de modificações em arquivo.\
 Deve ser localizado na pasta "public". Este microsserviço é o único que deve ter algo do tipo.\
@@ -46,33 +50,50 @@ Estas informações são mantidas em "public/file.json" como "expressão:resulta
 O microsserviço "calculation" realiza a conta.\
 A resposta esperada é uma string, podendo ser a conta realizada ou uma mensagem de erro.
 
-## Implementação
+## Implementação da arquitetura
 
 Não usaremos um orquestrador, todos os microsserviços saberão exatamente o endereço do outro.\
 Não há necessidade para a existência de um banco de dados.
 
-### Interface "server"
+### `server`
 
 O "server" repassará para o microsserviço "response" a expressão que deseja ser calculada.\
 Não há necessidade de validação, caso esteja fora do padrão, os microsserviços saberão tratá-las.
 
-### Microsserviço "response"
+### `microservice response`
 
 Após o recebimento, este microsserviço encaminhará a requisição para o microsserviço "store".\
 Ao receber o resultado da expressão, ele responderá o "server" com uma string.\
 Esta string pode ser tanto o resultado como uma mensagem de erro. Ambas serão repassadas para o usuário.
 
-### Microsserviço "store"
+### `microservice store`
 
 Checando o arquivo .json interno, ele irá ver se já existe o resultado da expressão.\
 Caso exista, ele o retornará para o microsserviço "response".
 
 Senão, ele enviará a expressão para o microsserviço "calculation" e aguardará o resultado.\
-Após o recebimento, ele irá repassar a resposta e atualizar o seu arquivo .json.
+Após o recebimento, ele irá repassar a resposta e atualizar o seu arquivo .json.\
 A atualização só será realizada em caso de sucesso.
 
-### Microsserviço "calculation"
+### `microservice calculation`
 
 Após o recebimento da expressão, este microsserviço a calculará.\
 Calculando-a, ele a retornará para o microsserviço "store".\
 A resposta é uma string, dizendo se a entrada é inválida ou, em caso de sucesso, o resultado em questão.
+
+## Diagrama
+
+Ilustrando o processo descrito anteriormente:
+
+```mermaid
+flowchart LR;
+	A[Client]---->B[Server];
+	B-->C((Response));
+	C-->D((Store));
+	C-->B;
+	subgraph Microservices
+	D-->E((Calculator));
+	D-->C;
+	E-->D;
+	end
+```
