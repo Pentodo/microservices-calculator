@@ -22,7 +22,7 @@ Inicia o processo da aplicação. É dito no console qual o IP e porta de escuta
 
 O mesmo que o anterior, mas, em casos de modificações, automaticamente reinicia a aplicação.
 
-## Configuração
+## Configurações
 
 ### `.env`
 
