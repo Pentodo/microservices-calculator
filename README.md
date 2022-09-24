@@ -50,6 +50,21 @@ Estas informações são mantidas em "public/file.json" como "expressão:resulta
 O microsserviço "calculation" realiza a conta.\
 A resposta esperada é uma string, podendo ser a conta realizada ou uma mensagem de erro.
 
+### Ilustrando o processo descrito acima:
+
+```mermaid
+flowchart LR;
+	A[Client]---->B[Server];
+	B-->C((Response));
+	C-->D((Store));
+	C-->B;
+	subgraph Microservices
+	D-->E((Calculator));
+	D-->C;
+	E-->D;
+	end
+```
+
 ## Implementação da arquitetura
 
 Não usaremos um orquestrador, todos os microsserviços saberão exatamente o endereço do outro.\
@@ -80,20 +95,3 @@ A atualização só será realizada em caso de sucesso.
 Após o recebimento da expressão, este microsserviço a calculará.\
 Calculando-a, ele a retornará para o microsserviço "store".\
 A resposta é uma string, dizendo se a entrada é inválida ou, em caso de sucesso, o resultado em questão.
-
-## Diagrama
-
-Ilustrando o processo descrito anteriormente:
-
-```mermaid
-flowchart LR;
-	A[Client]---->B[Server];
-	B-->C((Response));
-	C-->D((Store));
-	C-->B;
-	subgraph Microservices
-	D-->E((Calculator));
-	D-->C;
-	E-->D;
-	end
-```
