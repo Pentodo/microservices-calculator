@@ -10,6 +10,18 @@ O objetivo a ser realizado era:
 Sendo assim, desenvolvemos uma calculadora, (totalmente didática), na arquitetura de microsserviços.\
 Para a realização deste projeto, utilizamos os protocolos síncronos HTTP e REST.
 
+## Como executar
+
+Em cada diretório raiz de microsserviço ou servidor, você pode usar a chamada de script:
+
+### `npm start`
+
+Inicia o processo da aplicação. É dito no console qual o IP e porta de escuta.
+
+### `npm run dev`
+
+O mesmo que o anterior, mas, em casos de modificações, automaticamente reinicia a aplicação.
+
 ## Configuração
 
 Cada microsserviço tem um arquivo ".env", que define a variável de ambiente PORT.\
